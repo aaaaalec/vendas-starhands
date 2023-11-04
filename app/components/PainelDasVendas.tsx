@@ -4,8 +4,13 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState, useEffect } from "react";
 import { serialize } from "cookie";
 import { parseCookies } from 'nookies';
+import Vendas from './Vendas';
 
-const PainelDasVendas = () => {
+type Props = {
+    vendas: any;
+    };
+
+const PainelDasVendas = ({vendas}: Props) => {
   const router = useRouter();
   const [password, setPassword] = useState(false);
 
@@ -52,9 +57,12 @@ const PainelDasVendas = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center">
+    <div className="w-full h-screen">
       {!password ? (
         <>
+         <div className="w-full h-screen flex flex-col justify-center items-center">
+
+      
           <div className=" text-3xl mb-8">Entre Palavra-Passe</div>
 
           <form
@@ -70,12 +78,13 @@ const PainelDasVendas = () => {
               Submit
             </button>
           </form>
+          </div>
         </>
       ) : (
         // Render the protected content
-        <div>
-          <h1>Protected Content</h1>
-          {/* Your protected content goes here */}
+        <div className="w-full h-screen flex flex-col justify-start items-start">
+          <h1 className="m-2 md:m-6 text-xl">Painel das Vendas</h1>
+          <Vendas vendas={vendas}/>
         </div>
       )}
     </div>
