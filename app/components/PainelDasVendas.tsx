@@ -13,6 +13,16 @@ type Props = {
 const PainelDasVendas = ({vendas}: Props) => {
   const router = useRouter();
   const [password, setPassword] = useState(false);
+  const [filteredVendas, setFilteredVendas] = useState([]);
+
+  useEffect(() => {
+    const vendasFiltered = vendas.filter(venda => {
+      return venda.shippingMethod === "shipping" && /* Add condition to check if the item is shipped */;
+    });
+    setFilteredVendas(vendasFiltered);
+ }, [vendas]);
+ 
+
 
    // Check if the user is already logged in
    useEffect(() => {
