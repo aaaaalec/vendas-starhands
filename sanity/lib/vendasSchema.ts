@@ -63,14 +63,14 @@ const venda: SchemaTypeDefinition = {
         type: 'object',
         fields: [
           {
-            name: 'shippingAddress',
+            name: 'address',
             title: 'Shipping Address',
             type: 'string',
             description: 'The shipping address',
           },
           {
-            name: 'name',
-            title: 'Name',
+            name: 'nome',
+            title: 'Nome',
             type: 'string',
             description: 'The name of the recipient',
           },
