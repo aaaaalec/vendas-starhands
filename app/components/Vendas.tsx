@@ -30,7 +30,7 @@ type Props = {
 
 const Vendas = (props: Props) => {
 
-  function formatDate(datetime) {
+  function formatDate(datetime: string) {
     let date = new Date(datetime);
     let formattedDate = date.getFullYear() + '-' + 
                        ('0' + (date.getMonth()+1)).slice(-2) + '-' + 
