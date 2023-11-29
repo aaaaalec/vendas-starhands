@@ -4,7 +4,7 @@ import { client } from "@/sanity/lib/client"
 
 export default async function Page() {
   const vendas = await client.fetch(
-    groq`*[_type == "sale"]{
+    groq`*[_type == "sale"] | order(datetime desc) [0...100] {
       _id,
       amount,
       description,
