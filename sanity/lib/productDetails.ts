@@ -18,13 +18,11 @@ const productDetails: FieldDefinition = {
      description: 'The price per item',
    },
    {
-     name: 'totalPrice',
-     title: 'Total Price',
-     type: 'number',
-     description: 'The total price for the quantity of this item',
-     // Calculate the total price based on the quantity and price per item
-     value: ({ document }) => document.quantity * document.pricePerItem,
-   },
+    name: 'totalPrice',
+    title: 'Total Price',
+    type: 'number',
+    description: 'The total price for the quantity of this item',
+  },
    {
      name: 'hadSale',
      title: 'Had Sale',
