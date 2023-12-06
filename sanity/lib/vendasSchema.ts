@@ -63,6 +63,12 @@ const venda: SchemaTypeDefinition = {
         type: 'string',
         description: 'The shipping method (e.g., in-store pickup, shipping)',
       },
+       {
+     name: 'shippingPrice',
+     title: 'Shipping Price',
+     type: 'number',
+     description: 'The shipping price',
+   },
       {
         name: 'shippingInfo',
         title: 'Shipping Information',
