@@ -1,5 +1,5 @@
 import { SchemaTypeDefinition } from 'sanity';
-
+import productDetails from './productDetails';
 
 const venda: SchemaTypeDefinition = {
     name: 'sale',
@@ -25,6 +25,12 @@ const venda: SchemaTypeDefinition = {
         title: 'Description',
         type: 'string',
         description: 'The description of the sale',
+      },
+      {
+        name: 'products',
+        title: 'Produtos',
+        type: 'array',
+        of: [productDetails],
       },
       {
         name: 'datetime',

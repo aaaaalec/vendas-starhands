@@ -11,6 +11,7 @@ export default async function Page() {
       datetime,
       paymentStatus,
       shippingMethod,
+      products,
       shippingInfo{
         address,
         city,
