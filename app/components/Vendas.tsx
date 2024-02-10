@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ShippingInfoModal from "./ShippingInfoModal";
 import {
   Table,
@@ -23,9 +23,9 @@ type Venda = {
   shippingMethod: string;
   shippingInfo: {
     shippingAddress: string;
-    name: string;
     nif: string;
     email: string;
+    nome: string;
     phone: string;
     zip: string;
     city: string;
@@ -51,14 +51,16 @@ const Vendas = (props: Props) => {
     return formattedDate;
   }
 
-  const hasPaidStatus = props.vendas.some(venda => venda.paymentStatus === 'Paid');
+  const hasPaidStatus = props.vendas.some(
+    (venda) => venda.paymentStatus === "Paid",
+  );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
- 
+
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
@@ -69,15 +71,14 @@ const Vendas = (props: Props) => {
       <Table className="overflow-auto table-auto">
         <TableHeader>
           <TableRow className="bg-red border-2 border-b-white ">
-          <TableHead>Payment Status</TableHead>
-         
-              {hasPaidStatus ? (
-               <>
-           
-            <TableHead>Payment Datetime</TableHead>
-            <TableHead className="w-12 bg-white/20">Shipped</TableHead>
-            </>
-             ) : null}
+            <TableHead>Payment Status</TableHead>
+
+            {hasPaidStatus ? (
+              <>
+                <TableHead>Payment Datetime</TableHead>
+                <TableHead className="w-12 bg-white/20">Shipped</TableHead>
+              </>
+            ) : null}
             <TableHead>Amount</TableHead>
             <TableHead className="min-w-46 bg-white/20">Description</TableHead>
             <TableHead>Datetime</TableHead>
@@ -89,43 +90,60 @@ const Vendas = (props: Props) => {
         <TableBody>
           {props.vendas.map((venda, index) => (
             <>
-            
-            <TableRow className={hasPaidStatus ? "" : "bg-red-500" }key={index}>
-               <TableCell className=" bg-red-200/20">{venda.paymentStatus}</TableCell>
-              {venda.paymentStatus === 'Paid' ? (
-               <>
-                <TableCell className=" bg-red-200/20">{formatDate(venda.paymentDatetime)}</TableCell>
-              <TableCell className=" bg-red-200/20">
-                <input
-                  type="radio"
-                  id={`shipped-${index}`}
-                  name={`shipped-${index}`}
-                />
-                <label htmlFor={`shipped-${index}`}></label>
-              </TableCell>
-               </>
-             ) : null}
-              <TableCell className=" bg-red-200/20">{venda.amount}€</TableCell>
-              <TableCell className=" bg-red-200/20">{venda.description}</TableCell>
-              <TableCell className=" bg-red-200/20">{formatDate(venda.datetime)}</TableCell>
-             
-              <TableCell className=" bg-red-200/20">{venda.shippingMethod}</TableCell>
-              <TableCell className=" bg-red-200/20">
-              <Button className="hover:bg-red-500 bg-slate-500" onClick={handleModalOpen}>Show Shipping Info</Button>
-               <ShippingInfoModal
-        
-            shippingInfo={venda.shippingInfo}
-            isOpen={isModalOpen}
-            onClose={handleModalClose}
-          />
-              </TableCell>
-              <TableCell className=" bg-red-200/20">{venda.id}</TableCell>
-            </TableRow>
-           
-         </> ))}
+              <TableRow
+                className={hasPaidStatus ? "" : "bg-red-500"}
+                key={index}
+              >
+                <TableCell className=" bg-red-200/20">
+                  {venda.paymentStatus}
+                </TableCell>
+                {venda.paymentStatus === "Paid" ? (
+                  <>
+                    <TableCell className=" bg-red-200/20">
+                      {formatDate(venda.paymentDatetime)}
+                    </TableCell>
+                    <TableCell className=" bg-red-200/20">
+                      <input
+                        type="radio"
+                        id={`shipped-${index}`}
+                        name={`shipped-${index}`}
+                      />
+                      <label htmlFor={`shipped-${index}`}></label>
+                    </TableCell>
+                  </>
+                ) : null}
+                <TableCell className=" bg-red-200/20">
+                  {venda.amount}€
+                </TableCell>
+                <TableCell className=" bg-red-200/20">
+                  {venda.description}
+                </TableCell>
+                <TableCell className=" bg-red-200/20">
+                  {formatDate(venda.datetime)}
+                </TableCell>
+
+                <TableCell className=" bg-red-200/20">
+                  {venda.shippingMethod}
+                </TableCell>
+                <TableCell className=" bg-red-200/20">
+                  <Button
+                    className="hover:bg-red-500 bg-slate-500"
+                    onClick={handleModalOpen}
+                  >
+                    Show Shipping Info
+                  </Button>
+                  <ShippingInfoModal
+                    shippingInfo={venda.shippingInfo}
+                    isOpen={isModalOpen}
+                    onClose={handleModalClose}
+                  />
+                </TableCell>
+                <TableCell className=" bg-red-200/20">{venda.id}</TableCell>
+              </TableRow>
+            </>
+          ))}
         </TableBody>
       </Table>
-      
     </div>
   );
 };

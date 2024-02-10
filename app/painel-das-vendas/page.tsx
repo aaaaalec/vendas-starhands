@@ -2,6 +2,8 @@ import PainelDasVendas from "../components/PainelDasVendas";
 import { groq } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 0;
+
 export default async function Page() {
   const vendas = await client.fetch(
     groq`*[_type == "sale"] | order(datetime desc) [0...100] {
@@ -25,9 +27,6 @@ export default async function Page() {
         zip
       }
     }`,
-    {
-      cache: "no-store",
-    },
   );
 
   return (
