@@ -66,7 +66,7 @@ const Vendas = (props: Props) => {
   };
 
   return (
-    <div className="px-2 md:px-6  w-full">
+    <div className="px-2 md:px-6  py-6 w-full">
       <h1 className="border-b-2 border-white w-full">Vendas</h1>
       <Table className="overflow-auto table-auto">
         <TableHeader>
