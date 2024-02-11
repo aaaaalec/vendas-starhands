@@ -46,6 +46,15 @@ const PainelDasVendas = ({ vendas }: Props) => {
     }
   }, []);
 
+  const onDelete = async (event: FormEvent) => {
+    event.preventDefault();
+    let ids = liveVendas.flatMap((venda: any) => venda._id);
+    let idString = ids.join(",");
+    console.log(idString);
+    for (let id of ids) {
+      client.delete(id);
+    }
+  };
   const handlePasswordSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const enteredPassword = (
@@ -80,26 +89,19 @@ const PainelDasVendas = ({ vendas }: Props) => {
         <>
           <div className="w-full h-screen flex flex-col justify-center items-center">
             <div className=" text-3xl mb-8">Entre Palavra-Passe</div>
-
-            <form
-              className="w-full flex justify-center"
-              onSubmit={handlePasswordSubmit}
-            >
-              <input
-                className=" h-10  pl-6 bg-white text-black rounded-l-xl transition-all duration-150 w-[210px] sm:w-[300px] border-b-5 focus:rounded-l-3xl focus:outline-none"
-                type="password"
-                name="password"
-              />
-              <button className="bg-orange-300 rounded-r-xl w-32" type="submit">
-                Submit
-              </button>
-            </form>
           </div>
         </>
       ) : (
         // Render the protected content
         <div className="w-full h-screen flex flex-col justify-start items-start">
-          <h1 className="m-2 md:m-6 text-xl">Painel das Vendas</h1>
+          <div className="w-full h-16 bg-gradient-to-r from-orange-300 to-orange-500 flex items-center justify-between flex-row">
+            <h1 className="m-2 md:m-6 text-xl">Painel das Vendas</h1>
+            <form onSubmit={onDelete}>
+              <button className="bg-orange-300 rounded-r-xl w-32" type="submit">
+                Delete
+              </button>
+            </form>
+          </div>
           <Vendas vendas={liveVendas} />
         </div>
       )}
