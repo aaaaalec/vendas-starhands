@@ -96,11 +96,6 @@ const PainelDasVendas = ({ vendas }: Props) => {
         <div className="w-full h-screen flex flex-col justify-start items-start">
           <div className="w-full h-16 bg-gradient-to-r from-orange-300 to-orange-500 flex items-center justify-between flex-row">
             <h1 className="m-2 md:m-6 text-xl">Painel das Vendas</h1>
-            <form onSubmit={onDelete}>
-              <button className="bg-orange-300 rounded-r-xl w-32" type="submit">
-                Delete
-              </button>
-            </form>
           </div>
           <Vendas vendas={liveVendas} />
         </div>
